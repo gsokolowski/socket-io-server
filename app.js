@@ -1,3 +1,4 @@
+// based on https://www.valentinog.com/blog/socket-io-node-js-react/
 // This is socket-io-server
 // uruchom server
 // greg:socket-io-server Grzegorz$ node app.js
@@ -36,7 +37,9 @@ const getApiAndEmit = async socket => {
     const res = await axios.get(
       "https://api.darksky.net/forecast/a90c21bf602e9675ba156d2ff4d32823/43.7695,11.2558"
     ); // Getting the data from DarkSky
-    socket.emit("FromAPI", res.data.currently.temperature); // Emitting a new info about temperature. It will be consumed by the client
+
+    // Emitting a new info about temperature. It will be consumed by the client
+    socket.emit("FromAPI", res.data.currently.temperature);
   } catch (error) {
     console.error(`Error: ${error.code}`);
   }
